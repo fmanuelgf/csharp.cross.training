@@ -3,4 +3,4 @@ The goal of this cross-training solution is to provide examples, as well as expl
 
 This topics are:
 
-- [Language-Integrated Query (LINQ)](./docs/linq.md)
+- [Language-Integrated Query (LINQ)](docs/linq.md)
