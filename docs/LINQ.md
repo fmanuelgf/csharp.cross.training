@@ -14,7 +14,7 @@ The term "LINQ to Objects" refers to the use of LINQ queries with any `IEnumerab
 Example:
 ```C#
 	var result = this.personsList
-		.Where(x => x.Age = 35)
+		.Where(x => x.Age == 35)
 		.OrderBy(x => x.Name);
 ```
 

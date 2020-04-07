@@ -64,8 +64,8 @@
         public IActionResult GetOrderBy()
         {
             var result = this.personsRepository.GetQueryable()
-                .OrderBy(x => x.Name) // Order Ascending by Bame
-                .ToList(); // Materialize!
+                .OrderBy(x => x.Name)
+                .ToList();
 
             return this.Ok(result);
         }
@@ -79,7 +79,8 @@
                 .Select(x => new 
                 {
                    Name = x.Name,
-                   Descriptios = this.GetDescription(x)
+                   Descriptios = this.GetDescription(x),
+                   Whatever = "foo"
                 }) 
                 .OrderBy(x => x.Name); // Order the resulting anonymous type accending by Name
                 
