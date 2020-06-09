@@ -14,7 +14,7 @@ namespace Csharp.CrossTraining.Infrastructure
             for (var i = 1; i <= 50; i++)
             {
                 var person = new Person(
-                    $"John {i}",
+                    $"John {i:00}",
                     rnd.Next(20, 90),
                     rnd.Next(65, 105));
 
@@ -36,9 +36,9 @@ namespace Csharp.CrossTraining.Infrastructure
 
                 var pet = new Pet(
                     $"My {specieName.ToLowerInvariant()} {i + 1}",
-                    specieName);
+                    specieName,
+                    person.Id);
 
-                pet.PersonId = person.Id;
                 yield return pet;
             }
         }

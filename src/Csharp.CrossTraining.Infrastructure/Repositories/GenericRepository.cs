@@ -13,10 +13,7 @@ namespace Csharp.CrossTraining.Infrastructure.Repositories
             this.context = context;
         }
 
-        public IQueryable<TEntity> GetQueryable()
-        {
-            return this.context.Set<TEntity>().AsQueryable();
-        }
+        public IQueryable<TEntity> GetQueryable() => this.context.Set<TEntity>().AsQueryable();
 
         public async Task<int> AddAsync(TEntity entity)
         {

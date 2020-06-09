@@ -1,6 +1,5 @@
 namespace Csharp.CrossTraining.Infrastructure.Entities
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -20,20 +19,18 @@ namespace Csharp.CrossTraining.Infrastructure.Entities
         }
 
         public string Name { get; set; }
+
         public int Age { get; set; }
+
         public int Weight { get; set; }
-        public IEnumerable<Pet> Pets { get; set; }
+        
+        public ICollection<Pet> Pets { get; set; }
 
         public void AddPet(Pet petEntity)
         {
             if (this.Pets.Any(x => x.Id == petEntity.Id))
             {
                 return;
-            }
-
-            if (petEntity.Id == Guid.Empty)
-            {
-                Id = Guid.NewGuid();
             }
 
             this.Pets.Append(petEntity);

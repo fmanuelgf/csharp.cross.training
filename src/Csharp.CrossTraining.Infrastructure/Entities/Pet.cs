@@ -8,11 +8,12 @@ namespace Csharp.CrossTraining.Infrastructure.Entities
         {
         }
 
-        public Pet(string name, string specie)
+        public Pet(string name, string specie, Guid personId)
             : base()
         {
             this.Name = name;
             this.Specie = specie;
+            this.PersonId = personId;
         }
 
         public string Name { get; set; }

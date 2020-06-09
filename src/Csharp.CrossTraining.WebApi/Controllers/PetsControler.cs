@@ -10,21 +10,18 @@
     using Microsoft.Extensions.Logging;
 
     [ApiController]
-    [Route("api/persons")]
-    public class PersonsControler : ControllerBase
+    [Route("api/pets")]
+    public class PetsControler : ControllerBase
     {
-        private readonly IGenericRepository<Person> personsRepository;
         private readonly IGenericRepository<Pet> petsRepository;
         private readonly AppMapper mapper;
-        private readonly ILogger<PersonsControler> logger;
+        private readonly ILogger<PetsControler> logger;
 
-        public PersonsControler(
-            IGenericRepository<Person> personsRepository,
+        public PetsControler(
             IGenericRepository<Pet> petsRepository,
             AppMapper mapper,
-            ILogger<PersonsControler> logger)
+            ILogger<PetsControler> logger)
         {
-            this.personsRepository = personsRepository;
             this.petsRepository = petsRepository;
             this.mapper = mapper;
             this.logger = logger;
@@ -33,7 +30,7 @@
         [HttpGet]
         public IActionResult GetAll()
         {
-            var entities = this.personsRepository
+            var entities = this.petsRepository
                 .GetQueryable()
                 .OrderBy(x => x.Name);
 
@@ -49,37 +46,32 @@
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var personEntity = this.personsRepository
+            var entity = this.petsRepository
                 .GetQueryable()
                 .FirstOrDefault(x => x.Id == id); 
 
-            if (personEntity == null)
+            if (entity == null)
             {
                 return this.NotFound();
             }
 
-            personEntity.Pets = this.petsRepository
-                .GetQueryable()
-                .Where(x => x.PersonId == personEntity.Id)
-                .ToList();
-
-            var result = this.mapper.Map(personEntity);
+            var result = this.mapper.Map(entity);
             return this.Ok(result);
         }
 
         [HttpPost]
-        public IActionResult Save([FromBody] PersonDto dto)
+        public IActionResult Save([FromBody] PetDto dto)
         {
             var entity = this.mapper.Map(dto);
-            this.personsRepository.AddAsync(entity);
+            this.petsRepository.AddAsync(entity);
 
             return this.Ok();
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(Guid id, [FromBody] PersonDto dto)
+        public IActionResult Update(Guid id, [FromBody] PetDto dto)
         {
-            var entity = this.personsRepository
+            var entity = this.petsRepository
                 .GetQueryable()
                 .FirstOrDefault(x => x.Id == id);
 
@@ -89,7 +81,7 @@
             }
 
             this.mapper.MapFromTo(dto, entity);
-            this.personsRepository.UpdateAsync(entity);
+            this.petsRepository.UpdateAsync(entity);
 
             return this.Ok();
         }
@@ -97,7 +89,7 @@
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            var entity = this.personsRepository
+            var entity = this.petsRepository
                 .GetQueryable()
                 .FirstOrDefault(x => x.Id == id);
 
@@ -106,7 +98,7 @@
                 return this.NotFound();
             }
 
-            this.personsRepository.DeleteAsync(entity);
+            this.petsRepository.DeleteAsync(entity);
 
             return this.Ok();
         }

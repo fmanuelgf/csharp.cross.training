@@ -28,7 +28,7 @@ namespace Csharp.CrossTraining.WebApi
 
             services.AddScoped<IGenericRepository<Person>, GenericRepository<Person>>();
             services.AddScoped<IGenericRepository<Pet>, GenericRepository<Pet>>();
-            services.AddScoped<PersonMapper>();
+            services.AddScoped<AppMapper>();
 
             services.AddControllers();
         }
