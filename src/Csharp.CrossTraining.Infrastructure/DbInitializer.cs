@@ -11,7 +11,7 @@ namespace Csharp.CrossTraining.Infrastructure
         {
             var rnd = new Random(DateTime.Now.Millisecond);
 
-            for (var i = 1; i <= 1000; i++)
+            for (var i = 1; i <= 50; i++)
             {
                 var person = new Person(
                     $"John {i}",

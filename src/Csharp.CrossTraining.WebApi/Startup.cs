@@ -8,6 +8,8 @@ namespace Csharp.CrossTraining.WebApi
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.EntityFrameworkCore;
+    using Csharp.CrossTraining.Infrastructure.Entities;
+    using Csharp.CrossTraining.WebApi.Mappers;
 
     public class Startup
     {
@@ -24,8 +26,9 @@ namespace Csharp.CrossTraining.WebApi
             services.AddDbContext<AppDbContext>(opt =>
                opt.UseSqlite(Configuration.GetConnectionString("PersonsConnectionString")));
 
-            services.AddScoped<IPersonRepository, PersonRepository>();
-            services.AddScoped<IPetsRepository, PetsRepository>();
+            services.AddScoped<IGenericRepository<Person>, GenericRepository<Person>>();
+            services.AddScoped<IGenericRepository<Pet>, GenericRepository<Pet>>();
+            services.AddScoped<PersonMapper>();
 
             services.AddControllers();
         }

@@ -17,7 +17,8 @@ namespace Csharp.CrossTraining.WebApi
                     logging.ClearProviders();
                     logging.AddConsole();
                 })
-                .ConfigureWebHostDefaults(webBuilder => {
+                .ConfigureWebHostDefaults(webBuilder => 
+                {
                     webBuilder.UseStartup<Startup>();
                 });
     }

@@ -10,13 +10,13 @@
     [Route("api/[controller]")]
     public class ExamplesController : ControllerBase
     {
-        private readonly IPersonRepository personsRepository;
-        private readonly IPetsRepository petsRepository;
+        private readonly IGenericRepository<Person> personsRepository;
+        private readonly IGenericRepository<Pet> petsRepository;
         private readonly ILogger<ExamplesController> logger;
 
         public ExamplesController(
-            IPersonRepository personsRepository,
-            IPetsRepository petsRepository,
+            IGenericRepository<Person> personsRepository,
+            IGenericRepository<Pet> petsRepository,
             ILogger<ExamplesController> logger)
         {
             this.personsRepository = personsRepository;
@@ -74,7 +74,7 @@
         public IActionResult GetSelectAnonymoustype()
         {
             var result = this.personsRepository.GetQueryable()
-                .Where(x => x.Height >= 70 && x.Height <= 80)
+                .Where(x => x.Weight >= 70 && x.Weight <= 80)
                 .ToList() // Hack!!! EF Core cannot translate Select calling a function
                 .Select(x => new 
                 {
@@ -131,7 +131,7 @@
 
         private string GetDescription(Person person)
         {
-            return $"Age {person.Age} and {person.Height}cm height";
+            return $"Age {person.Age} and {person.Weight}cm height";
         }
     }
 }

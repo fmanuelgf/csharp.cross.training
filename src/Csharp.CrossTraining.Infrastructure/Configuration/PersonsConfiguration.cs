@@ -11,7 +11,7 @@ namespace Csharp.CrossTraining.Infrastructure.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Age).IsRequired();
-            builder.Property(x => x.Height).IsRequired();
+            builder.Property(x => x.Weight).IsRequired();
             builder.HasMany(x => x.Pets).WithOne().HasForeignKey(x => x.PersonId).IsRequired();
         }
     }
