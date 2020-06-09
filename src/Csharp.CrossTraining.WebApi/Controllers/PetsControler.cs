@@ -65,7 +65,8 @@
             var entity = this.mapper.Map(dto);
             this.petsRepository.AddAsync(entity);
 
-            return this.Ok();
+             var result = this.mapper.Map(entity);
+            return this.Ok(result);
         }
 
         [HttpPut("{id}")]
@@ -83,7 +84,8 @@
             this.mapper.MapFromTo(dto, entity);
             this.petsRepository.UpdateAsync(entity);
 
-            return this.Ok();
+            var result = this.mapper.Map(entity);
+            return this.Ok(result);
         }
 
         [HttpDelete("{id}")]

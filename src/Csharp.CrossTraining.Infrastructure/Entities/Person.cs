@@ -9,12 +9,12 @@ namespace Csharp.CrossTraining.Infrastructure.Entities
         {
         }
 
-        public Person(string name, int age, int height)
+        public Person(string name, int age, int weight)
             : base()
         {
             this.Name = name;
             this.Age = age;
-            this.Weight = height;
+            this.Weight = weight;
             this.Pets = new List<Pet>();
         }
 
@@ -33,7 +33,7 @@ namespace Csharp.CrossTraining.Infrastructure.Entities
                 return;
             }
 
-            this.Pets.Append(petEntity);
+            this.Pets.Add(petEntity);
         }
     }
 }

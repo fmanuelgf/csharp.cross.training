@@ -1,5 +1,6 @@
 namespace Csharp.CrossTraining.Infrastructure.Repositories
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Csharp.CrossTraining.Infrastructure.Entities;
@@ -18,6 +19,12 @@ namespace Csharp.CrossTraining.Infrastructure.Repositories
         public async Task<int> AddAsync(TEntity entity)
         {
             await this.context.Set<TEntity>().AddAsync(entity);
+            return await this.context.SaveChangesAsync();
+        }
+
+        public async Task<int> AddAsync(IEnumerable<TEntity> entities)
+        {
+            await this.context.Set<TEntity>().AddRangeAsync(entities);
             return await this.context.SaveChangesAsync();
         }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Csharp.CrossTraining.Infrastructure.Entities
 {
-    public class EntityBase
+    public abstract class EntityBase
     {
         public EntityBase()
         {

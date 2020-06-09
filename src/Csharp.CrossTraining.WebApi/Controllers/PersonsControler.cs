@@ -73,7 +73,8 @@
             var entity = this.mapper.Map(dto);
             this.personsRepository.AddAsync(entity);
 
-            return this.Ok();
+            var result = this.mapper.Map(entity);
+            return this.Ok(result);
         }
 
         [HttpPut("{id}")]
@@ -91,7 +92,8 @@
             this.mapper.MapFromTo(dto, entity);
             this.personsRepository.UpdateAsync(entity);
 
-            return this.Ok();
+            var result = this.mapper.Map(entity);
+            return this.Ok(result);
         }
 
         [HttpDelete("{id}")]
