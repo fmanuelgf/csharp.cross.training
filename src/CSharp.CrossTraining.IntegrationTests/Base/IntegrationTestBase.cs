@@ -1,5 +1,6 @@
 namespace CSharp.CrossTraining.IntegrationTests.Base
 {
+    using System;
     using System.Net.Http;
     using Csharp.CrossTraining.WebApi;
     using Microsoft.AspNetCore.Mvc.Testing;
@@ -7,14 +8,16 @@ namespace CSharp.CrossTraining.IntegrationTests.Base
 
     public class IntegrationTestBase : IClassFixture<WebApplicationFactory<Startup>>
     {
+        private readonly Lazy<DataFactory> dataFactory;
+
         public IntegrationTestBase(WebApplicationFactory<Startup> factory)
         {
-            this.DataFactory = new DataFactory(factory.Services);
+            this.dataFactory = new Lazy<DataFactory>(() => new DataFactory(factory.Services));
             this.ApiClient = factory.CreateClient();
         }
 
         protected HttpClient ApiClient { get; }
 
-        protected DataFactory DataFactory { get; }
+        protected DataFactory DataFactory => this.dataFactory.Value;
     }
 }
