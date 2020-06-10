@@ -1,7 +1,6 @@
 namespace CSharp.CrossTraining.IntegrationTests.ControllerTests
 {
     using System.Linq;
-    using System.Text.Json;
     using Csharp.CrossTraining.WebApi;
     using Csharp.CrossTraining.WebApi.Dtos;
     using CSharp.CrossTraining.IntegrationTests.Base;

@@ -2,7 +2,6 @@ namespace CSharp.CrossTraining.IntegrationTests.Base
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Csharp.CrossTraining.Infrastructure.Entities;
     using Csharp.CrossTraining.Infrastructure.Repositories;
     using Microsoft.Extensions.DependencyInjection;
@@ -10,14 +9,12 @@ namespace CSharp.CrossTraining.IntegrationTests.Base
     public class DataFactory : IDisposable
     {
         private readonly IGenericRepository<Person> personsRespository;
-        private readonly IGenericRepository<Pet> petsRespository;
         private List<Person> personsCache;
 
         public DataFactory(IServiceProvider serviceProvider)
         {
             var scopedServices = serviceProvider.CreateScope().ServiceProvider;
             this.personsRespository = scopedServices.GetRequiredService<IGenericRepository<Person>>();
-            this.petsRespository = scopedServices.GetRequiredService<IGenericRepository<Pet>>();
 
             this.personsCache = new List<Person>();
         }
